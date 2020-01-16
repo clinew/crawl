@@ -120,13 +120,13 @@ ifdef LTO
 CFOPTIMIZE += -flto=jobserver -fwhole-program
 endif
 
-CFOTHERS := -pipe $(EXTERNAL_FLAGS)
+CFOTHERS := -pipe $(EXTERNAL_FLAGS) -fpermissive
 CFWARN := -Wall -Wformat-security
 CFWARN_L := -Wundef
 
 DEFINES := $(EXTERNAL_DEFINES)
 
-LDFLAGS := $(EXTERNAL_LDFLAGS)
+LDFLAGS := $(EXTERNAL_LDFLAGS) -ltinfow
 
 #
 # The GCC and GXX variables are set later.

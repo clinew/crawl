@@ -1048,7 +1048,7 @@ void set_skill_level(skill_type skill, double amount)
     {
         int next_level = reduced ? skill_cost_needed(you.skill_cost_level)
                                  : skill_cost_needed(you.skill_cost_level + 1);
-        int max_xp = abs(next_level - you.total_experience);
+        int max_xp = abs((long int)(next_level - you.total_experience));
 
         // When reducing, we don't want to stop right at the limit, unless
         // we're at skill cost level 0.
@@ -1060,7 +1060,7 @@ void set_skill_level(skill_type skill, double amount)
         // It's max_xp*10/cost rounded up.
         int max_skp = (max_xp * 10 + cost - 1) / cost;
         max_skp = std::max(max_skp, 1);
-        int delta_skp = std::min<int>(abs(target - you.skill_points[skill]),
+        int delta_skp = std::min<int>(abs((long int)(target - you.skill_points[skill])),
                                       max_skp);
         int delta_xp = (delta_skp * cost + 9) / 10;
 
